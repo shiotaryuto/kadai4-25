@@ -1,0 +1,40 @@
+<p id="notice"></p>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3">
+     <%= render 'users/new',user: @user,book: @book %>
+    </div>
+      <div class="col-md-8 offset-md-1">
+      <h2>Book detail</h2>
+       <table class="table table-hover table-inverse">
+      <tbody>
+        <tr>
+
+          <td><%= link_to user_path(@user.id) do %>
+              <%= image_tag(@user.get_profile_image(100,100)) %>
+              <% end %>
+          <br><%= link_to(@user.name, user_path(@user.id)) %></br>
+          </td>
+           <td><%= link_to(@books.title, book_path(@books.id)) %></td>
+
+           <td>
+            <%= @books.body %>
+           </td>
+           <td>
+            <% if @books.user == current_user %>
+            <%= link_to "Edit", edit_book_path(@books.id) %>
+            <% end %>
+           </td>
+           <td>
+           <% if @books.user == current_user %>
+           <%= link_to "Destroy", book_path(@books.id), method: :delete %>
+           <% end %>
+
+
+
+        </tr>
+      </tbody>
+      </table>
+    </div>
+  </div>
+</div>
